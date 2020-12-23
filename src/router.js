@@ -1,27 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import TopPage from './components/TopPage'
-import QuestionnairePage from './components/QuestionnairePage'
+import topPage from './components/topPage'
+import questionnairePage from './components/questionnairePage'
 import contentPage from './components/contentPage'
 
 
 Vue.use(Router)
-
-
 
 export default new Router({
   mode: "history",
   routes:[
     {
       path: '/',
-      component: TopPage,
-      name: 'TopPage'
+      component: topPage,
+      name: 'topPage'
     },
     {
-      path: '/QuestionnairePage',
-      component: QuestionnairePage,
-      name: 'QuestionnairePage'
+      path: '/questionnairePage',
+      component: questionnairePage,
+      name: 'questionnairePage'
     },
     {
       path: '/contentPage',

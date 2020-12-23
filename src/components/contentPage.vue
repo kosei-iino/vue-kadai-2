@@ -12,14 +12,14 @@
 
         <!--ご相談内容-->
         <label class="title">{{ consultation }}</label>
-        <textarea cols="100" rows="10" v-model="ansConsultation" @change="storeSave"></textarea>
+        <textarea cols="100" rows="10" v-model="ansConsultation"></textarea>
   
     </div>
 
     <!--ページ移動-->
     <span class="buttons">
-      <router-link class="transition-button" to="/QuestionnairePage">{{ back }}</router-link>
-      <router-link class="transition-button" to="/">{{ next }}</router-link>
+      <button class="transition-button" @click="movePage(backPage)">{{ back }}</button>
+      <button class="transition-button" @click="movePage(nextPage)">{{ next }}</button>
     </span>
   </div>
 </template>
@@ -34,13 +34,19 @@ export default {
       consultation:'-ご相談内容-',
       ansConsultation:'',
       back:'前へ戻る',
-      next:'次へ進む'
+      next:'次へ進む',
+      backPage:'QuestionnairePage',
+      nextPage:'/'
     }
   },
   methods: {
-    //ストアに保存
-    storeSave(){
-        this.$store.state.ansConsultation = this.ansConsultation;
+    //ページ遷移
+    movePage(pageName){
+      //ストアに保存
+      this.$store.state.ansConsultation = this.ansConsultation;
+
+      //指定のパスへ移動
+      this.$router.push(pageName);
     }
   }
 }

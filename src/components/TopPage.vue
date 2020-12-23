@@ -1,5 +1,5 @@
 <template>
-  <div class="TopPage">
+  <div class="topPage">
 
     <!--ヘッダー-->
     <header>
@@ -40,7 +40,7 @@
         <label>{{ birthdayManth }}</label>
 
         <!--日-->
-        <select v-model="ansBirthDay" @change="storeSave">
+        <select v-model="ansBirthDay">
           <option v-for="(num,key) in daysNum" :key="key">{{ num }}</option>
         </select>
         <label>{{ birthdayDay }}</label>
@@ -50,14 +50,14 @@
 
     <!--ページ移動-->
     <span class="buttons">
-      <router-link class="transition-button" to="/QuestionnairePage">{{ next }}</router-link>
+      <button class="transition-button" @click="movePage(nextPage)">{{ next }}</button>
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TopPage',
+  name: 'topPage',
   data () {
     return {
       step:'STEP1',
@@ -77,19 +77,24 @@ export default {
       monthNum:12,
       ansBirthDay:'',
       daysNum:'',
-      next:'次へ進む >'
+      next:'次へ進む >',
+      nextPage:'QuestionnairePage'
     }
   },
   created: function(){
     this.getYearNow();
   },
   methods: {
-    //ストアに保存
-    storeSave(){
-     this.$store.state.ansSex = this.ansSex;
-     this.$store.state.ansBirthYear = this.ansBirthYear;
-     this.$store.state.ansBirthMonth = this.ansBirthMonth;
-     this.$store.state.ansBirthDay = this.ansBirthDay;
+    //ページ遷移
+    movePage(pageName){
+      //ストアに保存
+      this.$store.state.ansSex = this.ansSex;
+      this.$store.state.ansBirthYear = this.ansBirthYear;
+      this.$store.state.ansBirthMonth = this.ansBirthMonth;
+      this.$store.state.ansBirthDay = this.ansBirthDay;
+
+      //指定のパスへ移動
+      this.$router.push(pageName);
     },
     //今の年を取得
     getYearNow: function()

@@ -1,5 +1,5 @@
 <template>
-  <div class="QuestionnairePage">
+  <div class="questionnairePage">
 
     <!--ヘッダー-->
     <header>
@@ -39,9 +39,9 @@
         <label class="title">{{ hospitalizationHistory }}</label>
 
         <div>
-          <input type="radio" id="yesHospitalizationHistory" value="Y" v-model="ansHospitalizationHistory" @change="storeSave">
+          <input type="radio" id="yesHospitalizationHistory" value="Y" v-model="ansHospitalizationHistory">
             <label for="yesHospitalizationHistory">{{ yes }}</label>
-          <input type="radio" id="noHospitalizationHistory" value="N" v-model="ansHospitalizationHistory" @change="storeSave">
+          <input type="radio" id="noHospitalizationHistory" value="N" v-model="ansHospitalizationHistory">
             <label for="noHospitalizationHistory">{{ no }}</label>
         </div>
       </div>
@@ -50,15 +50,15 @@
 
     <!--ページ移動-->
     <span class="buttons">
-      <router-link class="transition-button" to="/">{{ back }}</router-link>
-      <router-link class="transition-button" to="/contentPage">{{ next }}</router-link>
+      <button class="transition-button" @click="movePage(backPage)">{{ back }}</button>
+      <button class="transition-button" @click="movePage(nextPage)">{{ next }}</button>
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'QuestionnairePage',
+  name: 'questionnairePage',
   data () {
     return {
       step:'STEP2',
@@ -75,15 +75,21 @@ export default {
       yes:'はい',
       no:'いいえ',
       back:'前へ戻る',
-      next:'次へ進む'
+      next:'次へ進む',
+      backPage:'/',
+      nextPage:'contentPage'
     }
   },
   methods: {
-    //ストアに保存
-    storeSave(){
+    //ページ遷移
+    movePage(pageName){
+      //ストアに保存
       this.$store.state.ansInstruction = this.ansInstruction;
       this.$store.state.ansHospitalization = this.ansHospitalization;
       this.$store.state.ansHospitalizationHistory = this.ansHospitalizationHistory;
+
+      //指定のパスへ移動
+      this.$router.push(pageName);
     }
   }
 }
