@@ -3,110 +3,97 @@
 
     <!--ヘッダー-->
     <header>
-        <p class="button is-info is-small">{{ step }}</p>
-        <p class="instruction">{{ instruction }}</p>
+        <p class="button is-info is-small">STEP1</p>
+        <p class="instruction">お客様の情報を入力してください</p>
     </header>
 
     <!--内容-->
     <div class="content">
       
       <!--性別-->
-      <label class="title">{{ sex }}</label>
+      <label class="title">-性別-</label>
 
       <div>
         <!--男-->
         <input type="radio" id="man" value="man" v-model="ansSex">
-        <label for="man">{{ sexMan }}</label>
+        <label for="man">男性</label>
 
         <!--女-->
         <input type="radio" id="woman" value="woman" v-model="ansSex">
-        <label for="woman">{{ sexWoman }}</label>
+        <label for="woman">女性</label>
       </div>
 
       <!--生年月日確認-->
-      <label class="title">{{ birthday }}</label>
+      <label class="title">-生年月日-</label>
 
       <div>
         <!--年-->
-        <select v-model="ansBirthYear" @change="getSelectDay">
-          <option v-for="(num,key) in yearNum" :key="key">{{ yearNow - num }}</option>
+        <select v-model="ansBirthYear" @change="getSelectDays">
+          <option v-for="(num,key) in 50" :key="key">{{ yearNow - num }}</option>
         </select>
-        <label>{{ birthdayYear }}</label>
+        <label>年</label>
 
         <!--月-->
-        <select v-model="ansBirthMonth" @change="getSelectDay">
-          <option v-for="(num,key) in monthNum" :key="key">{{ num }}</option>
+        <select v-model="ansBirthMonth" @change="getSelectDays">
+          <option v-for="(num,key) in 12" :key="key">{{ num }}</option>
         </select>
-        <label>{{ birthdayManth }}</label>
+        <label>月</label>
 
         <!--日-->
         <select v-model="ansBirthDay">
           <option v-for="(num,key) in daysNum" :key="key">{{ num }}</option>
         </select>
-        <label>{{ birthdayDay }}</label>
+        <label>日</label>
       </div>
       
     </div>
 
     <!--ページ移動-->
     <span class="buttons">
-      <button class="transition-button" @click="movePage(nextPage)">{{ next }}</button>
+      <button class="transition-button" @click="movePage('QuestionnairePage')">次へ進む ></button>
     </span>
   </div>
 </template>
 
 <script>
+
+//今の年を取得
+import getNowYear from '../js/getNowYear'
+
+//指定年月の最大日付を取得
+import getSelectDay from '../js/getSelectDay'
+
 export default {
   name: 'topPage',
   data () {
     return {
-      step:'STEP1',
-      instruction:'お客様の情報を入力してください',
-      sex:'-性別-',
-      sexMan:'男性',
-      sexWoman:'女性',
-      ansSex:'',
-      birthday:'-生年月日-',
-      birthdayYear:'年',
-      birthdayManth:'月',
-      birthdayDay:'日',
-      yearNow:'',
-      ansBirthYear:'',
-      yearNum:50,
-      ansBirthMonth:'',
-      monthNum:12,
-      ansBirthDay:'',
-      daysNum:'',
-      next:'次へ進む >',
-      nextPage:'QuestionnairePage'
+      ansSex: '',
+      yearNow: '',
+      ansBirthYear: '',
+      ansBirthMonth: '',
+      ansBirthDay: '',
+      daysNum: ''
     }
   },
-  created: function(){
-    this.getYearNow();
+  mounted () {
+    //今の年を取得
+    this.yearNow = getNowYear()
   },
   methods: {
     //ページ遷移
     movePage(pageName){
       //ストアに保存
-      this.$store.state.ansSex = this.ansSex;
-      this.$store.state.ansBirthYear = this.ansBirthYear;
-      this.$store.state.ansBirthMonth = this.ansBirthMonth;
-      this.$store.state.ansBirthDay = this.ansBirthDay;
+      this.$store.commit('topPage',{ansSex: this.ansSex
+                                    ,ansBirthYear: this.ansBirthYear
+                                    ,ansBirthMonth: this.ansBirthMonth
+                                    ,ansBirthDay: this.ansBirthDay });
 
       //指定のパスへ移動
       this.$router.push(pageName);
     },
-    //今の年を取得
-    getYearNow: function()
-    {
-      const today = new Date()
-      this.yearNow = today.getFullYear();
-    },
     //指定年月の最大日付を取得
-    getSelectDay: function () 
-    {
-      this.daysNum = new Date(this.ansBirthYear, this.ansBirthMonth, 0).getDate();
-      
+    getSelectDays(){
+      this.daysNum = getSelectDay(this.ansBirthYear, this.ansBirthMonth)
     }
   }
 }
