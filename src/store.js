@@ -15,18 +15,18 @@ export default new Vuex.Store({
     ansConsultation: ''
   },
   mutations: {
-    topPage (state,data){
+    setTopPage(state, data) {
       state.ansSex = data.ansSex
       state.ansBirthYear = data.ansBirthYear
       state.ansBirthMonth = data.ansBirthMonth
       state.ansBirthDay = data.ansBirthDay
     },
-    questionnaireSave (state,data){
+    setQuestionnairePage(state, data) {
       state.ansInstruction = data.ansInstruction
       state.ansHospitalization = data.ansHospitalization
       state.ansHospitalizationHistory = data.ansHospitalizationHistory
     },
-    contentSave (state,data){
+    setContentPage(state, data) {
       state.ansConsultation = data.ansConsultation
     }
   }
