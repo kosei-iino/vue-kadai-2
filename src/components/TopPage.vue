@@ -6,8 +6,6 @@
       <p class="instruction">お客様の情報を入力してください</p>
     </header>
 
-    {{ this.$store.state.user }}
-
     <!--内容-->
     <div class="content">
       <!--性別-->
