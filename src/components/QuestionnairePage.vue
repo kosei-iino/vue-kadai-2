@@ -93,12 +93,12 @@
 
 <script>
 export default {
-  name: "questionnairePage",
+  name: 'questionnairePage',
   data() {
     return {
-      ansInstruction: "",
-      ansHospitalization: "",
-      ansHospitalizationHistory: "",
+      ansInstruction: '',
+      ansHospitalization: '',
+      ansHospitalizationHistory: '',
       ques1_display: true,
       ques2_display: false,
       ques3_display: false,
@@ -108,7 +108,7 @@ export default {
     //ページ遷移
     movePage(pageName) {
       //ストアに保存
-      this.$store.commit("setQuestionnairePage", {
+      this.$store.commit('setUser', {
         ansInstruction: this.ansInstruction,
         ansHospitalization: this.ansHospitalization,
         ansHospitalizationHistory: this.ansHospitalizationHistory,

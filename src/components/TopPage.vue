@@ -6,6 +6,8 @@
       <p class="instruction">お客様の情報を入力してください</p>
     </header>
 
+    {{ this.$store.state.user }}
+
     <!--内容-->
     <div class="content">
       <!--性別-->
@@ -56,21 +58,21 @@
 
 <script>
 //今の年を取得
-import getNowYear from "../js/getNowYear";
+import getNowYear from '../js/getNowYear';
 
 //指定年月の最大日付を取得
-import getSelectDay from "../js/getSelectDay";
+import getSelectDay from '../js/getSelectDay';
 
 export default {
-  name: "topPage",
+  name: 'topPage',
   data() {
     return {
-      ansSex: "",
-      yearNow: "",
-      ansBirthYear: "",
-      ansBirthMonth: "",
-      ansBirthDay: "",
-      daysNum: "",
+      ansSex: '',
+      yearNow: '',
+      ansBirthYear: '',
+      ansBirthMonth: '',
+      ansBirthDay: '',
+      daysNum: '',
     };
   },
   mounted() {
@@ -81,7 +83,7 @@ export default {
     //ページ遷移
     movePage(pageName) {
       //ストアに保存
-      this.$store.commit("setTopPage", {
+      this.$store.commit('setUser', {
         ansSex: this.ansSex,
         ansBirthYear: this.ansBirthYear,
         ansBirthMonth: this.ansBirthMonth,

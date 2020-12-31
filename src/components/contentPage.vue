@@ -25,17 +25,17 @@
 
 <script>
 export default {
-  name: "contentPage",
+  name: 'contentPage',
   data() {
     return {
-      ansConsultation: "",
+      ansConsultation: '',
     };
   },
   methods: {
     //ページ遷移
     movePage(pageName) {
       //ストアに保存
-      this.$store.commit("setContentPage", { ansConsultation: this.ansConsultation });
+      this.$store.commit('setUser', { ansConsultation: this.ansConsultation });
       //指定のパスへ移動
       this.$router.push(pageName);
     },
