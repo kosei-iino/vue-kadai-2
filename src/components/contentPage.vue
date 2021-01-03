@@ -15,10 +15,12 @@
 
     <!--ページ移動-->
     <span class="buttons">
-      <button class="transition-button" @click="movePage('QuestionnairePage')">
+      <button class="transition-button" @click="movePage('questionnairePage')">
         前へ戻る
       </button>
-      <button class="transition-button" @click="movePage('/')">次へ進む</button>
+      <button class="transition-button" @click="movePage('confirmationPage')">
+        次へ進む
+      </button>
     </span>
   </div>
 </template>

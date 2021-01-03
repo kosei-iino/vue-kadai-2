@@ -13,11 +13,11 @@
 
       <div>
         <!--男-->
-        <input type="radio" id="man" value="man" v-model="ansSex" />
+        <input type="radio" id="man" value="男性" v-model="ansSex" />
         <label for="man">男性</label>
 
         <!--女-->
-        <input type="radio" id="woman" value="woman" v-model="ansSex" />
+        <input type="radio" id="woman" value="女性" v-model="ansSex" />
         <label for="woman">女性</label>
       </div>
 

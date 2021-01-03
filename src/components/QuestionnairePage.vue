@@ -16,7 +16,7 @@
           <input
             type="radio"
             id="yesInstruction"
-            value="Y"
+            value="はい"
             v-model="ansInstruction"
             @change="ques2_display = true"
           />
@@ -24,7 +24,7 @@
           <input
             type="radio"
             id="noInstruction"
-            value="N"
+            value="いいえ"
             v-model="ansInstruction"
             @change="ques2_display = true"
           />
@@ -34,15 +34,15 @@
 
       <!--2問目-->
       <div v-if="ques2_display">
-        <label class="title"
-          >現在入院中ですか。または、最近3ヵ月以内に医師の診察・検察の結果、入院・手術をすすめられたことはありますか？</label
-        >
+        <label class="title">
+          現在入院中ですか。または、最近3ヵ月以内に医師の診察・検察の結果、入院・手術をすすめられたことはありますか？
+        </label>
 
         <div>
           <input
             type="radio"
             id="yesHospitalization"
-            value="Y"
+            value="はい"
             v-model="ansHospitalization"
             @change="ques3_display = true"
           />
@@ -50,7 +50,7 @@
           <input
             type="radio"
             id="noHospitalization"
-            value="N"
+            value="いいえ"
             v-model="ansHospitalization"
             @change="ques3_display = true"
           />
@@ -60,22 +60,22 @@
 
       <!--3問目-->
       <div v-if="ques3_display">
-        <label class="title"
-          >過去5年以内に、病気やけがで、手術をうけたことまたは継続して7日以上の入院をしたことがありますか？</label
-        >
+        <label class="title">
+          過去5年以内に、病気やけがで、手術をうけたことまたは継続して7日以上の入院をしたことがありますか？
+        </label>
 
         <div>
           <input
             type="radio"
             id="yesHospitalizationHistory"
-            value="Y"
+            value="はい"
             v-model="ansHospitalizationHistory"
           />
           <label for="yesHospitalizationHistory">はい</label>
           <input
             type="radio"
             id="noHospitalizationHistory"
-            value="N"
+            value="いいえ"
             v-model="ansHospitalizationHistory"
           />
           <label for="noHospitalizationHistory">いいえ</label>
