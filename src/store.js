@@ -20,8 +20,5 @@ export default new Vuex.Store({
     setUser(state, data) {
       Object.assign(state.user, data);
     }
-  },
-  getters: {
-    getUser: state => state.user
   }
 })
